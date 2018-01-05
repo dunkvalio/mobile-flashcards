@@ -1,11 +1,11 @@
-import { GET_DECKS } from '../actions/types';
-import { getDecks } from '../db';
+import { RECEIVE_DECKS } from '../actions';
 
-export default (state = [], action) => {
+export default (state = {}, action) => {
   switch (action.type) {
-    case GET_DECKS:
-      const decks = getDecks();
-      return Object.keys(decks).map(key => decks[key]);
+    case RECEIVE_DECKS:
+      return {
+        ...action.decks
+      };
     default:
       return state;
   }

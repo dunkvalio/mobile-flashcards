@@ -1,3 +1,7 @@
+import { AsyncStorage } from 'react-native';
+
+export const DECKS_STORAGE_KEY = 'MobileFlashcards:decks';
+
 // Example SCHEMA
 const dummyDecks = {
   React: {
@@ -24,14 +28,43 @@ const dummyDecks = {
   }
 };
 
-// To manage your AsyncStorage database, you'll want to create four different helper methods.
+function initialize(decks) {
+  if (!decks) {
+    AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify(dummyDecks));
+    return dummyDecks;
+  } else {
+    return JSON.parse(decks);
+  }
+}
 
-// getDecks: return all of the decks along with their titles, questions, and answers.
-// getDeck: take in a single id argument and return the deck associated with that id.
-// saveDeckTitle: take in a single title argument and add it to the decks.
-// addCardToDeck: take in two arguments, title and card, and will add the card to the list of questions for the deck with the associated title.
+export function getDecks() {
+  return AsyncStorage.getItem(DECKS_STORAGE_KEY)
+    .then(decks => initialize(decks))
+    .catch(e => console.warn(e));
+}
 
-export const getDecks = () => dummyDecks;
-export const getDeck = id => dummyDecks[id];
-export const saveDeckTitle = (deckId, newTitle) => {};
-export const addCardToDeck = (deckId, card) => {};
+export function getDeck(id) {
+  return getDecks().then(decks => decks[id]);
+}
+
+export function saveDeckTitle(title) {
+  return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
+    [title]: {
+      title,
+      questions: [],
+    },
+  }));
+}
+
+export function addCardToDeck(title, card) {
+  return getDeck(title)
+    .then(deck => ({ ...deck, questions: deck.questions.concat(card) }))
+    .then(deck =>
+      AsyncStorage.mergeItem(
+        DECKS_STORAGE_KEY,
+        JSON.stringify({
+          [title]: deck,
+        }),
+      )
+    );
+}

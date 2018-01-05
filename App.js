@@ -3,8 +3,8 @@ import { Provider } from 'react-redux';
 import { StyleSheet, Text, View } from 'react-native';
 
 import store from './src/store';
-import { primary, background } from './src/utils/colors';
 
+import { primary, background } from './src/utils/colors';
 import MainNavigator from './src/navigation';
 import AppStatusBar from './src/components/StatusBar';
 
@@ -25,5 +25,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: background,
-  }
+  },
 });

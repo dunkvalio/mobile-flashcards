@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
 import { Button, Text } from 'react-native-elements';
 
-import { background, gray, white } from '../../utils/colors';
+import { background, gray, white, primary } from '../../utils/colors';
 import { numberOfCardsMessage } from '../../utils/text';
 
 // Individual Deck View
@@ -30,9 +30,9 @@ class DeckView extends Component {
           <Button
             borderRadius={5}
             title='Add Card'
-            color='black'
+            color={primary}
             backgroundColor={white}
-            underlayColor='black'
+            underlayColor={primary}
             buttonStyle={styles.button}
             onPress={onAddCard}
           />
@@ -40,7 +40,7 @@ class DeckView extends Component {
             borderRadius={5}
             title='Start Quiz'
             color={white}
-            backgroundColor='black'
+            backgroundColor={primary}
             underlayColor={white}
             buttonStyle={styles.button}
             onPress={onStartQuiz}
@@ -71,12 +71,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: background,
     minHeight: '100%',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     alignItems: 'center',
-    paddingTop: 140,
-    paddingBottom: 140,
   },
   subtitle: {
+    flexDirection: 'column',
     textAlign: 'center',
     color: gray,
     fontSize: 24,
@@ -86,8 +85,8 @@ const styles = StyleSheet.create({
   },
   button: {
     borderWidth: 2,
-    borderColor: 'black',
-    margin: 3,
+    borderColor: primary,
+    marginBottom: 8,
   }
 });
 

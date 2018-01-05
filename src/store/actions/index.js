@@ -1,4 +1,37 @@
-import { GET_DECKS, GET_DECK } from './types';
+export const RECEIVE_DECKS = 'RECEIVE_DECKS';
+export const RECEIVE_CURRENT_DECK = 'RECEIVE_CURRENT_DECK';
 
-export const getDecks = () => ({ type: GET_DECKS });
-export const getDeck = id => ({ type: GET_DECK, id });
+import * as db from '../db';
+
+export const getDecks = () => {
+  return dispatch => {
+    db.getDecks()
+      .then(decks => dispatch({ type: RECEIVE_DECKS, decks }));
+  };
+};
+
+export const getDeck = id => {
+  return dispatch => {
+    db.getDeck(id).then(deck => dispatch({ type: RECEIVE_CURRENT_DECK, deck }));
+  };
+};
+
+export const saveDeckTitle = title => {
+  return dispatch => {
+    db.saveDeckTitle(title)
+      .then(db.getDecks)
+      .then(decks => dispatch({ type: RECEIVE_DECKS, decks }));
+  };
+};
+
+export const addCardToDeck = (title, card) => {
+  return dispatch => {
+    db.addCardToDeck(title, card)
+      .then(db.getDecks)
+      .then(decks => {
+        dispatch({ type: RECEIVE_DECKS, decks });
+        return decks[title]
+      })
+      .then(deck => dispatch({ type: RECEIVE_CURRENT_DECK, deck }));
+  };
+};

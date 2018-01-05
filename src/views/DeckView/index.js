@@ -2,18 +2,23 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import DeckView from './DeckView';
 
-const mapStateToProps = ({ currentDeck }, props) => {
-  const { id, title } = props.navigation.state.params;
+const mapStateToProps = ({ currentDeck }, { navigation }) => {
+  const { id, title } = navigation.state.params;
   return {
     id,
     title,
     deck: currentDeck,
     onAddCard: () => {
-      props.navigation.navigate('AddCard', {
+      navigation.navigate('AddCard', {
         deckId: currentDeck.title,
       });
-    }
-  }
-}
+    },
+    onStartQuiz: () => {
+      navigation.navigate('Quiz', {
+        deckId: currentDeck.title,
+      });
+    },
+  };
+};
 
 export default connect(mapStateToProps, actions)(DeckView);

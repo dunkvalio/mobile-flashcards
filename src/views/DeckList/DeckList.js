@@ -13,10 +13,11 @@ class DeckList extends Component {
 
   render() {
     const { decks, onSelectDeck } = this.props;
+    const data = Object.keys(decks).map(key => decks[key]);
     return (
       <List containerStyle={styles.list}>
         <FlatList
-          data={decks}
+          data={data}
           keyExtractor={item => item.title}
           renderItem={({ item }) => (
             <DeckItem
@@ -32,7 +33,7 @@ class DeckList extends Component {
 }
 
 DeckList.propTypes = {
-  decks: PropTypes.array.isRequired,
+  decks: PropTypes.object.isRequired,
   getDecks: PropTypes.func.isRequired,
 };
 

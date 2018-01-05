@@ -1,15 +1,15 @@
-import { GET_DECK } from "../actions/types";
-import { getDecks } from "../db";
+import { RECEIVE_CURRENT_DECK } from '../actions';
 
 const initialState = {
   questions: [],
-}
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_DECK:
-      const decks = getDecks();
-      return decks[action.id];
+    case RECEIVE_CURRENT_DECK:
+      return {
+        ...action.deck
+      };
     default:
       return state;
   }
