@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { Button, FormInput } from 'react-native-elements';
 
 import { background, gray, white, primary } from '../../utils/colors';
-import { numberOfCardsMessage } from '../../utils/text';
+import { numberOfCardsMessage } from '../../utils/helpers';
 
 // New Question View
 //    An option to enter in the question
@@ -91,8 +91,6 @@ const styles = StyleSheet.create({
   },
   input: {
     width: '100%',
-    borderBottomColor: gray,
-    borderBottomWidth: 1,
   },
   button: {
     borderWidth: 2,

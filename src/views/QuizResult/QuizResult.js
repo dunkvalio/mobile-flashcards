@@ -4,13 +4,21 @@ import { Animated, StyleSheet, View } from 'react-native';
 import { Button, Text } from 'react-native-elements';
 
 import { background, primary, white } from '../../utils/colors';
-import { numberOfCardsMessage } from '../../utils/text';
+import {
+  numberOfCardsMessage,
+  clearLocalNotification,
+  setLocalNotification,
+} from '../../utils/helpers';
 
 class QuizResult extends Component {
   state = {
     yTop: new Animated.Value(200),
     yBottom: new Animated.Value(-200),
   };
+
+  componentDidMount() {
+    clearLocalNotification().then(setLocalNotification);
+  }
 
   getPercent = (all, correct) => {
     return Math.round((correct / all) * 100);
@@ -36,7 +44,7 @@ class QuizResult extends Component {
         <View style={styles.buttonGroup}>
           <Button
             borderRadius={5}
-            title='Go Again'
+            title='Restart Quiz'
             color='black'
             backgroundColor={white}
             underlayColor='black'
@@ -45,7 +53,7 @@ class QuizResult extends Component {
           />
           <Button
             borderRadius={5}
-            title='Back To Deck Details'
+            title='Back To Deck'
             color={white}
             backgroundColor='black'
             underlayColor={white}

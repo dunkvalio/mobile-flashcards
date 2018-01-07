@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { Button, Text } from 'react-native-elements';
 
 import { background, gray, white, primary } from '../../utils/colors';
-import { numberOfCardsMessage } from '../../utils/text';
+import { numberOfCardsMessage } from '../../utils/helpers';
 
 // Individual Deck View
 //  displays the title of the Deck

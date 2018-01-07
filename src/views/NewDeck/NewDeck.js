@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { Button, FormInput, Text } from 'react-native-elements';
 
 import { background, gray, white, primary } from '../../utils/colors';
-import { numberOfCardsMessage } from '../../utils/text';
+import { numberOfCardsMessage } from '../../utils/helpers';
 
 class NewDeck extends Component {
   state = {
@@ -31,14 +31,14 @@ class NewDeck extends Component {
           autoCorrect
           blurOnSubmit
           value={this.state.title}
-          placeholder="Deck Title"
+          placeholder='Deck Title'
           onChangeText={this.onChangeText}
           containerStyle={styles.inputContainer}
           inputStyle={styles.input}
         />
         <Button
           borderRadius={5}
-          title="Submit"
+          title='Create Deck'
           color={white}
           backgroundColor={primary}
           buttonStyle={styles.button}
@@ -74,8 +74,6 @@ const styles = StyleSheet.create({
   },
   input: {
     width: '100%',
-    borderBottomColor: gray,
-    borderBottomWidth: 1,
   },
   button: {
     borderWidth: 2,

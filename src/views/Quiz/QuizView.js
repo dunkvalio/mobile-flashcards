@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { Button, Text } from 'react-native-elements';
 
 import { background, green, red, white } from '../../utils/colors';
-import { numberOfCardsMessage } from '../../utils/text';
+import { numberOfCardsMessage } from '../../utils/helpers';
 import QuestionCard from './QuestionCard';
 
 // Quiz View

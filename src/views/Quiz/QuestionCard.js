@@ -1,44 +1,36 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
-import { Button, Text } from 'react-native-elements';
+import { Text } from 'react-native-elements';
+import FlipCard from 'react-native-flip-card';
 
-import { background, red, white } from '../../utils/colors';
-import { numberOfCardsMessage } from '../../utils/text';
-
-// Quiz View
-//    displays a card question
-//    an option to view the answer (flips the card)
-//    a 'Correct' button
-//    an 'Incorrect' button
-//    the number of cards left in the quiz
-//    Displays the percentage correct once the quiz is complete
+import { background, red } from '../../utils/colors';
 
 class QuestionCard extends Component {
-  state = {
-    isAnswer: false,
-  }
-
-  onFlip = () => {
-    this.setState(state => ({ isAnswer: !state.isAnswer }));
-  }
-
   render() {
     const { item: { answer, question } } = this.props;
-    const { isAnswer } = this.state;
-
     return (
       <View style={styles.container}>
-        <Text h3 style={styles.text}>
-          {isAnswer ? answer : question}
-        </Text>
-        <Button
-          title={isAnswer ? 'Question' : 'Answer'}
-          color={red}
-          backgroundColor={white}
-          underlayColor={red}
-          onPress={this.onFlip}
-        />
+        <FlipCard
+          style={styles.card}
+          friction={8}
+          perspective={800}
+          useNativeDriver
+          alignWidth
+          clickable
+          flipHorizontal
+          flipVertical={false}
+          flip={false}
+        >
+          <View>
+            <Text h3 style={styles.text}>{question}</Text>
+            <Text style={styles.button}>Show Answer</Text>
+          </View>
+          <View>
+            <Text h4 style={styles.text}>{answer}</Text>
+            <Text style={styles.button}>Show Question</Text>
+          </View>
+        </FlipCard>
       </View>
     );
   }
@@ -58,9 +50,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  card: {
+    flex: 0.5,
+    width: '90%',
+    borderWidth: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   text: {
     textAlign: 'center',
-  }
+  },
+  button: {
+    color: red,
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginTop: 16,
+  },
 });
 
 export default QuestionCard;
