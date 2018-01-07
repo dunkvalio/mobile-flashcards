@@ -12,6 +12,6 @@ const mapStateToProps = ({ decks }, props) => {
     },
     decks,
   };
-}
+};
 
 export default connect(mapStateToProps, actions)(DeckList);

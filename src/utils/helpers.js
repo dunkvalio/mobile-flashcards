@@ -6,8 +6,6 @@ const NOTIFICATION_KEY = 'MobileFlashcards:notifications';
 export const numberOfCardsMessage = num => (num === 1)
   ? `${num} card` : `${num} cards`;
 
-
-
 export function clearLocalNotification() {
   return AsyncStorage.removeItem(NOTIFICATION_KEY).then(
     Notifications.cancelAllScheduledNotificationsAsync,

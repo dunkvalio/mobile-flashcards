@@ -4,6 +4,8 @@ import { Button, FormInput, Text } from 'react-native-elements';
 
 import { background, gray, white, primary } from '../../utils/colors';
 import { numberOfCardsMessage } from '../../utils/helpers';
+import AppButton from '../../components/AppButton';
+import InputField from '../../components/InputField';
 
 class NewDeck extends Component {
   state = {
@@ -26,24 +28,12 @@ class NewDeck extends Component {
         <Text h1 style={styles.question}>
           What is the title of your new deck?
         </Text>
-        <FormInput
-          multiline
-          autoCorrect
-          blurOnSubmit
+        <InputField
           value={this.state.title}
           placeholder='Deck Title'
           onChangeText={this.onChangeText}
-          containerStyle={styles.inputContainer}
-          inputStyle={styles.input}
         />
-        <Button
-          borderRadius={5}
-          title='Create Deck'
-          color={white}
-          backgroundColor={primary}
-          buttonStyle={styles.button}
-          onPress={this.onSubmit}
-        />
+        <AppButton primary title='Create Deck' onPress={this.onSubmit} />
       </View>
     );
   }
@@ -60,25 +50,6 @@ const styles = StyleSheet.create({
   },
   question: {
     textAlign: 'center',
-  },
-  inputContainer: {
-    borderColor: 'black',
-    borderWidth: 1,
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
-    borderRadius: 5,
-    padding: 8,
-    width: '95%',
-    marginTop: 24,
-    marginBottom: 24,
-  },
-  input: {
-    width: '100%',
-  },
-  button: {
-    borderWidth: 2,
-    borderColor: primary,
-    paddingHorizontal: 40,
   },
 });
 

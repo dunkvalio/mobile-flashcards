@@ -1,19 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
-import { Button, Text } from 'react-native-elements';
+import { Text } from 'react-native-elements';
 
-import { background, green, red, white } from '../../utils/colors';
+import { background, green, red } from '../../utils/colors';
 import { numberOfCardsMessage } from '../../utils/helpers';
+import AppButton from '../../components/AppButton';
 import QuestionCard from './QuestionCard';
-
-// Quiz View
-//    displays a card question
-//    an option to view the answer (flips the card)
-//    a "Correct" button
-//    an "Incorrect" button
-//    the number of cards left in the quiz
-//    Displays the percentage correct once the quiz is complete
 
 class QuizView extends Component {
   state = {
@@ -66,21 +59,17 @@ class QuizView extends Component {
         <View style={styles.detailsContainer}>
           <QuestionCard item={deck.questions[currentQuestion]}/>
           <View style={styles.buttonGroup}>
-            <Button
-              borderRadius={5}
+            <AppButton
+              primary
               title='Correct'
-              color={white}
               backgroundColor={green}
-              underlayColor={white}
               buttonStyle={styles.button}
               onPress={this.onAnswer(true)}
             />
-            <Button
-              borderRadius={5}
+            <AppButton
+              primary
               title='Incorrect'
-              color={white}
               backgroundColor={red}
-              underlayColor={white}
               buttonStyle={styles.button}
               onPress={this.onAnswer(false)}
             />
@@ -127,9 +116,7 @@ const styles = StyleSheet.create({
     width: '70%',
   },
   button: {
-    borderWidth: 1,
     borderColor: 'transparent',
-    marginBottom: 8,
   },
 });
 

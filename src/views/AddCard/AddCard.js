@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
-import { Button, FormInput } from 'react-native-elements';
 
-import { background, gray, white, primary } from '../../utils/colors';
+import { background, white, primary } from '../../utils/colors';
 import { numberOfCardsMessage } from '../../utils/helpers';
-
-// New Question View
-//    An option to enter in the question
-//    An option to enter in the answer
-//    An option to submit the new question
+import AppButton from '../../components/AppButton';
+import InputField from '../../components/InputField';
 
 class AddCard extends Component {
   state = {
@@ -30,42 +26,27 @@ class AddCard extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <FormInput
-          multiline
-          autoCorrect
-          blurOnSubmit
+        <InputField
           value={this.state.question}
-          placeholder="Question"
+          placeholder='Question'
           onChangeText={this.onChangeText('question')}
-          containerStyle={styles.inputContainer}
-          inputStyle={styles.input}
         />
-        <FormInput
-          multiline
-          autoCorrect
-          blurOnSubmit
+        <InputField
           value={this.state.answer}
-          placeholder="Answer"
+          placeholder='Answer'
           onChangeText={this.onChangeText('answer')}
-          containerStyle={styles.inputContainer}
-          inputStyle={styles.input}
         />
-        <Button
-          borderRadius={5}
-          title="Submit"
-          color={white}
-          backgroundColor={primary}
-          buttonStyle={styles.button}
-          onPress={this.onSubmit}
-        />
+        <AppButton primary title='Submit' onPress={this.onSubmit} />
       </View>
     );
   }
 }
 
-AddCard.propTypes = {};
-
-AddCard.defaultProps = {};
+AddCard.propTypes = {
+  deckId: PropTypes.string.isRequired,
+  addCardToDeck: PropTypes.func.isRequired,
+  goBack: PropTypes.func.isRequired,
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -74,28 +55,6 @@ const styles = StyleSheet.create({
     minHeight: '100%',
     alignItems: 'center',
     padding: 8,
-  },
-  question: {
-    textAlign: 'center',
-  },
-  inputContainer: {
-    borderColor: 'black',
-    borderWidth: 1,
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
-    borderRadius: 5,
-    padding: 8,
-    width: '95%',
-    marginTop: 24,
-    marginBottom: 24,
-  },
-  input: {
-    width: '100%',
-  },
-  button: {
-    borderWidth: 2,
-    borderColor: primary,
-    paddingHorizontal: 40,
   },
 });
 

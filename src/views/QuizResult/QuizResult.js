@@ -9,6 +9,7 @@ import {
   clearLocalNotification,
   setLocalNotification,
 } from '../../utils/helpers';
+import AppButton from '../../components/AppButton';
 
 class QuizResult extends Component {
   state = {
@@ -42,24 +43,8 @@ class QuizResult extends Component {
           </Animated.Text>
         </View>
         <View style={styles.buttonGroup}>
-          <Button
-            borderRadius={5}
-            title='Restart Quiz'
-            color='black'
-            backgroundColor={white}
-            underlayColor='black'
-            buttonStyle={styles.button}
-            onPress={onStartOver}
-          />
-          <Button
-            borderRadius={5}
-            title='Back To Deck'
-            color={white}
-            backgroundColor='black'
-            underlayColor={white}
-            buttonStyle={styles.button}
-            onPress={onGoToDetails}
-          />
+          <AppButton title='Restart Quiz' onPress={onStartOver} />
+          <AppButton primary title='Back To Deck' onPress={onGoToDetails} />
         </View>
       </View>
     );
@@ -96,11 +81,6 @@ const styles = StyleSheet.create({
   buttonGroup: {
     flex: 1,
     width: '70%',
-  },
-  button: {
-    borderWidth: 2,
-    borderColor: 'black',
-    marginBottom: 8,
   },
 });
 

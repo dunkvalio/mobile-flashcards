@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
-import { Button, Text } from 'react-native-elements';
+import { Text } from 'react-native-elements';
 
-import { background, gray, white, primary } from '../../utils/colors';
+import { background, gray,  } from '../../utils/colors';
 import { numberOfCardsMessage } from '../../utils/helpers';
-
-// Individual Deck View
-//  displays the title of the Deck
-//  displays the number of cards in the deck
-//  displays an option to start a quiz on this specific deck
-//  An option to add a new question to the deck
+import AppButton from '../../components/AppButton';
 
 class DeckView extends Component {
   componentDidMount() {
@@ -20,34 +15,18 @@ class DeckView extends Component {
 
   render() {
     const { deck, onAddCard, onStartQuiz } = this.props;
-    return (
-      <View style={styles.container}>
-        <View style={styles.detailsContainer}>
+    return <View style={styles.container}>
+        <View>
           <Text h1>{deck.title}</Text>
-          <Text style={styles.subtitle}>{numberOfCardsMessage(deck.questions.length)}</Text>
+          <Text style={styles.subtitle}>
+            {numberOfCardsMessage(deck.questions.length)}
+          </Text>
         </View>
         <View style={styles.buttonGroup}>
-          <Button
-            borderRadius={5}
-            title='Add Card'
-            color={primary}
-            backgroundColor={white}
-            underlayColor={primary}
-            buttonStyle={styles.button}
-            onPress={onAddCard}
-          />
-          <Button
-            borderRadius={5}
-            title='Start Quiz'
-            color={white}
-            backgroundColor={primary}
-            underlayColor={white}
-            buttonStyle={styles.button}
-            onPress={onStartQuiz}
-          />
+          <AppButton title="Add Card" onPress={onAddCard} />
+          <AppButton primary title="Start Quiz" onPress={onStartQuiz} />
         </View>
-      </View>
-    );
+      </View>;
   }
 }
 
@@ -83,11 +62,6 @@ const styles = StyleSheet.create({
   buttonGroup: {
     width: '70%',
   },
-  button: {
-    borderWidth: 2,
-    borderColor: primary,
-    marginBottom: 8,
-  }
 });
 
 export default DeckView;
