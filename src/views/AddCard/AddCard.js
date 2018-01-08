@@ -11,6 +11,7 @@ class AddCard extends Component {
   state = {
     question: '',
     answer: '',
+    showErrors: false,
   };
 
   onChangeText = key => value => {
@@ -18,23 +19,32 @@ class AddCard extends Component {
   };
 
   onSubmit = () => {
-    const { addCardToDeck, goBack, deckId } = this.props;
-    addCardToDeck(deckId, this.state);
-    goBack();
+    const { answer, question } = this.state;
+    if(answer && question) {
+      const { addCardToDeck, goBack, deckId } = this.props;
+      addCardToDeck(deckId, { answer, question });
+      goBack();
+    } else {
+      this.setState({ showErrors: true });
+    }
   };
 
   render() {
+    const { answer, question, showErrors } = this.state;
+
     return (
       <View style={styles.container}>
         <InputField
-          value={this.state.question}
+          value={question}
           placeholder='Question'
           onChangeText={this.onChangeText('question')}
+          showError={(showErrors && !question)}
         />
         <InputField
-          value={this.state.answer}
+          value={answer}
           placeholder='Answer'
           onChangeText={this.onChangeText('answer')}
+          showError={(showErrors && !answer)}
         />
         <AppButton primary title='Submit' onPress={this.onSubmit} />
       </View>

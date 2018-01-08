@@ -11,6 +11,7 @@ import InputField from '../../components/InputField';
 class NewDeck extends Component {
   state = {
     title: '',
+    showErrors: false,
   };
 
   onChangeText = title => {
@@ -19,11 +20,16 @@ class NewDeck extends Component {
 
   onSubmit = () => {
     const { title } = this.state;
-    this.props.saveDeckTitle(title);
-    this.props.onSubmit(title);
+    if (title) {
+      this.props.saveDeckTitle(title);
+      this.props.onSubmit(title);
+    } else {
+      this.setState({ showErrors: true });
+    }
   };
 
   render() {
+    const { title, showErrors } = this.state;
     return (
       <View style={styles.container}>
         <Text h1 style={styles.question}>
@@ -31,10 +37,11 @@ class NewDeck extends Component {
         </Text>
         <InputField
           value={this.state.title}
-          placeholder='Deck Title'
+          placeholder="Deck Title"
           onChangeText={this.onChangeText}
+          showError={(showErrors && !title)}
         />
-        <AppButton primary title='Create Deck' onPress={this.onSubmit} />
+        <AppButton primary title="Create Deck" onPress={this.onSubmit} />
       </View>
     );
   }
