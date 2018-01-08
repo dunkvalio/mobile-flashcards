@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
 import { Button, FormInput, Text } from 'react-native-elements';
 
@@ -17,9 +18,9 @@ class NewDeck extends Component {
   };
 
   onSubmit = () => {
-    const { saveDeckTitle, goBack } = this.props;
-    saveDeckTitle(this.state.title);
-    goBack();
+    const { title } = this.state;
+    this.props.saveDeckTitle(title);
+    this.props.onSubmit(title);
   };
 
   render() {
@@ -38,6 +39,11 @@ class NewDeck extends Component {
     );
   }
 }
+
+NewDeck.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  saveDeckTitle: PropTypes.func.isRequired,
+};
 
 const styles = StyleSheet.create({
   container: {

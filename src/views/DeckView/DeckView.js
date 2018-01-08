@@ -17,7 +17,7 @@ class DeckView extends Component {
     const { deck, onAddCard, onStartQuiz } = this.props;
     return <View style={styles.container}>
         <View>
-          <Text h1>{deck.title}</Text>
+          <Text h1 style={styles.title}>{deck.title}</Text>
           <Text style={styles.subtitle}>
             {numberOfCardsMessage(deck.questions.length)}
           </Text>
@@ -52,6 +52,9 @@ const styles = StyleSheet.create({
     minHeight: '100%',
     justifyContent: 'space-around',
     alignItems: 'center',
+  },
+  title: {
+    textAlign: 'center',
   },
   subtitle: {
     flexDirection: 'column',

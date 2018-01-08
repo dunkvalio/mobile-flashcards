@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
+import { DeckDetails } from '../../navigation/screens';
 import DeckList from './DeckList';
 
-const mapStateToProps = ({ decks }, props) => {
+const mapStateToProps = ({ decks }, { navigation }) => {
   return {
     onSelectDeck: (deck) => {
-      props.navigation.navigate('DeckDetails', {
+      navigation.navigate(DeckDetails, {
         id: deck.title,
         title: deck.title
       });
