@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, KeyboardAvoidingView } from 'react-native';
 import { Button, FormInput, Text } from 'react-native-elements';
 
 import { background, gray, white, primary } from '../../utils/colors';
@@ -31,18 +31,26 @@ class NewDeck extends Component {
   render() {
     const { title, showErrors } = this.state;
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView
+        behavior={'padding'}
+        style={styles.container}
+      >
         <Text h1 style={styles.question}>
           What is the title of your new deck?
         </Text>
         <InputField
-          value={this.state.title}
+          value={title}
           placeholder="Deck Title"
           onChangeText={this.onChangeText}
-          showError={(showErrors && !title)}
+          showError={!!showErrors && !title}
         />
-        <AppButton primary title="Create Deck" onPress={this.onSubmit} />
-      </View>
+        <AppButton
+          primary
+          title="Create Deck"
+          onPress={this.onSubmit}
+          buttonStyle={{ alignSelf: 'center' }}
+        />
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -58,7 +66,7 @@ const styles = StyleSheet.create({
     backgroundColor: background,
     minHeight: '100%',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'stretch',
     padding: 8,
   },
   question: {

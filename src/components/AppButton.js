@@ -11,18 +11,20 @@ const AppButton = ({
   onPress,
   buttonStyle,
   backgroundColor,
+  disabled,
 }) => (
   <Button
     borderRadius={5}
     title={title}
+    onPress={onPress}
+    disabled={disabled}
     color={primary ? white : primaryColor}
-    backgroundColor={backgroundColor
-      ? backgroundColor
-      : primary ? primaryColor : white
+    backgroundColor={
+      backgroundColor ? backgroundColor : primary ? primaryColor : white
     }
     underlayColor={primary ? white : primaryColor}
     buttonStyle={[styles.button, buttonStyle && buttonStyle]}
-    onPress={onPress}
+    disabledStyle={styles.disabled}
   />
 );
 
@@ -31,6 +33,7 @@ AppButton.propTypes = {
   onPress: PropTypes.func.isRequired,
   buttonStyle: PropTypes.oneOfType([PropTypes.number, PropTypes.object]),
   primary: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 
@@ -40,6 +43,9 @@ const styles = StyleSheet.create({
     borderColor: primaryColor,
     marginBottom: 8,
   },
+  disabled: {
+    borderColor: 'transparent',
+  }
 });
 
 export default AppButton;

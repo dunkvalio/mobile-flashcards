@@ -44,7 +44,6 @@ InputField.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    width: '95%',
     marginTop: 24,
     marginBottom: 24,
   },

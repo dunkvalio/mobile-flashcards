@@ -15,16 +15,19 @@ class DeckView extends Component {
 
   render() {
     const { deck, onAddCard, onStartQuiz } = this.props;
+
     return <View style={styles.container}>
         <View>
-          <Text h1 style={styles.title}>{deck.title}</Text>
+          <Text h1 style={styles.title}>
+            {deck.title}
+          </Text>
           <Text style={styles.subtitle}>
             {numberOfCardsMessage(deck.questions.length)}
           </Text>
         </View>
         <View style={styles.buttonGroup}>
           <AppButton title="Add Card" onPress={onAddCard} />
-          <AppButton primary title="Start Quiz" onPress={onStartQuiz} />
+          <AppButton primary disabled={!deck.questions.length} title="Start Quiz" onPress={onStartQuiz} />
         </View>
       </View>;
   }

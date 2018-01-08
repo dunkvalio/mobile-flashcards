@@ -1,4 +1,4 @@
-import { RECEIVE_CURRENT_DECK } from '../actions';
+import { RECEIVE_CURRENT_DECK } from '../actions/types';
 
 const initialState = {
   questions: [],

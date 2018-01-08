@@ -1,6 +1,4 @@
-export const RECEIVE_DECKS = 'RECEIVE_DECKS';
-export const RECEIVE_CURRENT_DECK = 'RECEIVE_CURRENT_DECK';
-
+import { RECEIVE_DECKS, RECEIVE_CURRENT_DECK } from './types';
 import * as db from '../db';
 
 export const getDecks = () => {

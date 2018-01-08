@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-elements';
 import FlipCard from 'react-native-flip-card';
 
@@ -22,11 +22,11 @@ class QuestionCard extends Component {
           flipVertical={false}
           flip={false}
         >
-          <View>
+          <View style={styles.content}>
             <Text h3 style={styles.text}>{question}</Text>
             <Text style={styles.button}>Show Answer</Text>
           </View>
-          <View>
+          <View style={styles.content}>
             <Text h4 style={styles.text}>{answer}</Text>
             <Text style={styles.button}>Show Question</Text>
           </View>
@@ -51,9 +51,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   card: {
-    flex: 0.5,
+    flex: 1,
     width: '90%',
     borderWidth: 0,
+  },
+  content: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -65,7 +68,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginTop: 16,
+    ...Platform.select({
+      ios: {
+        marginTop: 16,
+      },
+      android: {
+        marginTop: 8,
+      },
+    }),
   },
 });
 

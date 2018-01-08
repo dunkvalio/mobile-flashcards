@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, KeyboardAvoidingView } from 'react-native';
 
 import { background, white, primary } from '../../utils/colors';
 import { numberOfCardsMessage } from '../../utils/helpers';
@@ -33,7 +33,10 @@ class AddCard extends Component {
     const { answer, question, showErrors } = this.state;
 
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView
+        behavior={'padding'}
+        style={styles.container}
+      >
         <InputField
           value={question}
           placeholder='Question'
@@ -46,8 +49,8 @@ class AddCard extends Component {
           onChangeText={this.onChangeText('answer')}
           showError={(showErrors && !answer)}
         />
-        <AppButton primary title='Submit' onPress={this.onSubmit} />
-      </View>
+        <AppButton primary title='Submit' onPress={this.onSubmit} buttonStyle={{ alignSelf: 'center' }} />
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -63,7 +66,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: background,
     minHeight: '100%',
-    alignItems: 'center',
+    justifyContent: 'center',
+    alignItems: 'stretch',
     padding: 8,
   },
 });
