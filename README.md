@@ -48,3 +48,11 @@ $ yarn run android
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 You can find information about performing common tasks [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
+
+# Expo
+
+For more information about Expo you can refer to docs [HERE](https://docs.expo.io/versions/latest/index.html)
+
+# Licensing
+
+MIT License Copyright (c) 2018
